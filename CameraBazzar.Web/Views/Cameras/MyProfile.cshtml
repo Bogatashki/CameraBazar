@@ -1,0 +1,41 @@
+﻿@using CameraBazar.Models.Models
+@using CameraBazzar.Models.EntityModels
+@model ApplicationUser
+
+@{
+    ViewBag.Title = "MyProfile";
+
+
+@section styles {
+    @Styles.Render("~/Content/MyProfile.css")
+}
+
+
+
+
+@Html.Partial("~/Views/Cameras/_PartalViewUser.cshtml", Model)
+
+
+<h1>
+    Cameras:
+</h1>
+
+<ul>
+    @if (Model.Cameras.Count() > 0)
+    {
+        foreach (Camera item in Model.Cameras)
+        {
+            <li>
+                @Html.Partial("~/Views/Cameras/_PartalView.cshtml", item)
+            </li>
+        }
+    }
+    else
+    {
+        <li>
+            The user is not selling any cameras. Go to @Html.ActionLink("home page", "Index") to find more Offers of other users.
+        </li>
+    }
+
+</ul>
+

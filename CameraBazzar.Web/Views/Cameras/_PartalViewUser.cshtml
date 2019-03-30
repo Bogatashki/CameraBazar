@@ -1,0 +1,33 @@
+﻿@using CameraBazzar.Models.EntityModels
+@model ApplicationUser
+
+@{
+    int inStock = Model.Cameras.Where(camera => camera.Quantity > 0).Count();
+    int outOfStock = Model.Cameras.Where(camera => camera.Quantity == 0).Count();
+}
+
+
+<div>
+    <div>
+        <H1>
+            @Html.DisplayFor(model => model.UserName)
+            @if (User.Identity.Name == Model.UserName)
+            {
+                @Html.ActionLink("Edit Profile", "EditProfile", "Account")
+            }
+        </H1>
+    </div>
+    <div>
+        @Html.NameFor(model => model.Email):
+        @Html.DisplayFor(model => model.Email)
+    </div>
+    <div>
+        @Html.NameFor(model => model.Phone):
+        @Html.DisplayFor(model => model.Phone)
+    </div>
+    <div>
+        @Html.NameFor(model => model.Cameras):
+        @Html.DisplayFor(model => inStock) in stock /
+        @Html.DisplayFor(model => outOfStock) out of stock
+    </div>
+</div>

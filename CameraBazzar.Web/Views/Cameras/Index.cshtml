@@ -1,0 +1,28 @@
+﻿@using CameraBazar.Models.Models
+@model List<Camera>
+
+@section styles {
+    @Styles.Render("~/Content/MyProfile.css")
+}
+
+@{
+    ViewBag.Title = "Index";
+}
+<div>
+    @Html.ActionLink("Register", "Create", "Users")
+</div>
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<ul>
+    @foreach (Camera item in Model)
+    {
+        <li>
+            @Html.Partial("~/Views/Cameras/_PartalView.cshtml", item)
+        </li>
+    }
+</ul>
+

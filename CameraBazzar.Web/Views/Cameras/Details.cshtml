@@ -1,0 +1,114 @@
+﻿@model CameraBazar.Models.Models.Camera
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>
+        @Html.DisplayFor(model => model.Make)
+        @Html.DisplayFor(model => model.Model) - $
+        @Html.DisplayFor(model => model.Price) -
+        @if (Model.Quantity == 0)
+        {
+            <span class="text-danger">
+                @Html.DisplayName("OUT OF STOCK")
+            </span>
+        }
+        else
+        {
+            <span class="text-primary">
+                @Html.DisplayName("IN STOCK")
+            </span>
+        }
+    </h4>
+    <h3>
+        @Html.ActionLink(Model.ApplicationUser.UserName, "MyProfile", new { id = Model.ApplicationUser.Id }, "Cameras")
+    </h3>
+    <div>
+        <img class="card-image-top img-fluid img-thumbnail" src="@Url.Content(Model.ImageUrl)" alt="Image" />
+    </div>
+    <hr />
+    <dl class="row">
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.IsFullFrame)
+        </dt>
+
+        <dd class="col-sm-9">
+            @Html.DisplayTextFor(model => model.IsFullFrameYesNo)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.MinShutterSpeed)
+        </dt>
+
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.MinShutterSpeed)
+        </dd>
+
+        <dt class="col-sm-3">
+            1/@Html.DisplayNameFor(model => model.MaxShutterSpeed)
+        </dt>
+
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.MaxShutterSpeed)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.MinIso)
+        </dt>
+
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.MinIso)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.MaxIso)
+        </dt>
+
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.MaxIso)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.VideoResolution)
+        </dt>
+
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.VideoResolution)
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.Name("Light-Metering")
+        </dt>
+
+        <dd class="col-sm-9">
+            <div class="row">
+                @Html.Raw(Model.Spot ? "- Spot" : "")
+
+            </div>
+            <div class="row">
+                @Html.Raw(Model.Evaluative ? "- Evaluative" : "")
+
+            </div>
+            <div class="row">
+                @Html.Raw(Model.CenterWeighted ? "- CenterWeighted" : "")
+
+            </div>
+        </dd>
+
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
